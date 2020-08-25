@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="shortcut icon"
+        href="https://market.enonic.com/vendors/enonic/com.enonic.lib.urlredirect/_/attachment/inline/6e05932f-0ace-43d2-973c-de4021fde556:c3beeb7b93a48dc34c4bc6d6c7803591bc2a92ef/url.svg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shrinker</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+
+<body style="background-color: whitesmoke;">
+    <div class="container">
+        <h1 class="mt-4">URL Shrinker</h1>
+        <form action="/shrinkURL" method="POST" class="d-flex align-items-center flex-column">
+            <label for="url" class="sr-only">URL</label>
+            <input type="url" name="url" id="url" placeholder="URL" class="my-4 col" required>
+            <button type="submit" class="btn btn-success mb-3"
+                style="width: 30% !important; border-radius: 6px;">Shrink</button>
+        </form>
+        <table class="table table-striped table-bordered table-responsive-md">
+            <thead>
+                <tr>
+                    <th scope=" col">Full URL</th>
+                    <th scope="col">Shrinked URL</th>
+                    <th scope="col">Clicks</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% shrinkURL.forEach(shrinkURL => {  %>
+                <tr>
+                    <td><a href="<%= shrinkURL.full %>" target="_blank"><%= shrinkURL.full %> </a></td>
+                    <td><a href="<%= shrinkURL.shrink %>" target="_blank"><%= shrinkURL.shrink %> </a></td>
+                    <td><%= shrinkURL.clicks %></td>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
